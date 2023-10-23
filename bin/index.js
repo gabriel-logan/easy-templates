@@ -15,7 +15,7 @@ inquirer.prompt(questions).then((answers) => {
         selectedTemplate: answers.template,
     };
     fs.writeFileSync('userInput.json', JSON.stringify(userInput, null, 2));
-    if (userInput.selectedTemplate === 'reactjs_ts_webpack_react-router-dom') {
+    if (userInput.selectedTemplate === 'reactjs_ts_webpack_react-router-dom_styled-components_babel') {
         criarEstruturaDePastasReactTsWebpack(userInput);
     }
     else {

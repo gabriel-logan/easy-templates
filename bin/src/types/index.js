@@ -1,4 +1,4 @@
-const templateChoices = ['reactjs_ts_webpack_react-router-dom'];
+const templateChoices = ['reactjs_ts_webpack_react-router-dom_styled-components_babel'];
 const packageManager = ['yarn', 'npm'];
 export const questions = [
     {
