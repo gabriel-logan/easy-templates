@@ -174,7 +174,7 @@ export default Main;`;
 import { Route, Routes } from 'react-router-dom';
 
 // Page 404
-import NotFoundPage from '../pages/NotFoundPage';
+import NotFoundPage from '../pages/NotFound';
 
 // My Pages
 import Main from '../pages/Main';
@@ -207,18 +207,16 @@ function App() {
 
 export default App;`;
 
-	const indexContent = `
-	import React from 'react';
-	import ReactDOM from 'react-dom/client';
-	import App from './App';
+	const indexContent = `import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App';
 
-	const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-	root.render(
-		<React.StrictMode>
-			<App />
-		</React.StrictMode>,
-	);
-	`;
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+root.render(
+	<React.StrictMode>
+		<App />
+	</React.StrictMode>,
+);`;
 
 	const packageJsonContent = `{
 	"name": "${appName}",
@@ -505,7 +503,22 @@ Then, open [http://localhost:3000] to view it in the browser.
 
 ## Happy hacking (:\n`);
 
-			exec(packageManager === 'npm' ? 'npm run lint' : 'yarn lint');
+			exec(
+				packageManager === 'npm'
+					? `cd ${folderName} && npm run lint`
+					: `cd ${folderName} && yarn lint`,
+			);
+
+			// Navega para o diretório folderName
+			const child2 = spawn('cd', [folderName]);
+
+			child2.on('exit', (code) => {
+				if (code === 0) {
+					console.log(`Run npm start or yarn start - ${folderName} directory`);
+				} else {
+					console.error(`Error navigating to the ${folderName} directory`);
+				}
+			});
 
 			// Resto do seu código aqui
 		} else {
