@@ -1,8 +1,8 @@
 .editorconfig
-.eslintrc.js
+.eslintrc.cjs
 .gitignore
 .npmignore
-.prettierrc.js
+.prettierrc.cjs
 *.ts
 *.json
 !package.json

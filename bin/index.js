@@ -4,9 +4,9 @@ import path from 'path';
 import fs from 'fs';
 import criarEstruturaDePastasReactTsWebpack from './src/react-ts-webpack/index.js';
 import { questions } from './src/types/index.js';
-inquirer.prompt(questions).then(function (answers) {
-    var currentFolder = path.basename(process.cwd()).replace(/\s+/g, '-');
-    var userInput = {
+inquirer.prompt(questions).then((answers) => {
+    const currentFolder = path.basename(process.cwd()).replace(/\s+/g, '-');
+    const userInput = {
         packageManager: answers.packageManager,
         appName: answers.appName || currentFolder,
         appDescription: answers.appDescription || 'App Description',

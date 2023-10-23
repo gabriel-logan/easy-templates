@@ -12,19 +12,98 @@ function criarEstruturaDePastasReactTsWebpack({
 	appLicense,
 	appName,
 }: userInputProps) {
-	const appContent = `import React from 'react';
+	const notFoundPage = `import React from 'react';
+	import './NotFound.css'; // Importe seu arquivo de estilo CSS
 
-function App() {
-  return (
-    <div>
-      <h1>Hello, World!</h1>
-      <h1>App criado pelo Logan</h1>
-    </div>
-  );
+	function NotFound() {
+		return (
+			<div className="not-found-container">
+				<h1>404 - Page Not Found</h1>
+				<p>The page you are looking for does not exist.</p>
+				<p>Go back to the <a href="/">home page</a>.</p>
+			</div>
+		);
+	}
+
+	export default NotFound;`;
+	const notFoundPageCss = `.not-found-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100vh;
+text-align: center;
 }
 
-export default App;
-`;
+h1 {
+font-size: 4rem;
+color: #FF5722; /* Cor do título */
+}
+
+p {
+font-size: 1.5rem;
+margin: 0.5rem 0;
+}
+
+a {
+color: #2196F3; /* Cor do link */
+text-decoration: none;
+font-weight: bold;
+}
+
+a:hover {
+text-decoration: underline;
+}`;
+
+	const mainPageContent = `import React from 'react';
+
+	function Main() {
+		return (
+			<div>
+				<h1>Hello, World!</h1>
+				<h1>App criado pelo Logan</h1>
+			</div>
+		);
+	}
+
+	export default Main;`;
+
+	const routesContent = `import React from 'react';
+	// Server routes
+	import { Route, Routes } from 'react-router-dom';
+
+	// Page 404
+	import NotFoundPage from '../pages/NotFoundPage';
+
+	// My Pages
+	import Main from '../pages/Main';
+
+	export default function ConfigRoutes() {
+		return (
+			<Routes>
+				<Route path="/" element={<Main />} />
+				<Route path="*" element={<NotFoundPage />} />
+			</Routes>
+		);
+	}
+	`;
+
+	const appContent = `import React from 'react';
+
+	import { BrowserRouter as Router } from 'react-router-dom';
+
+	import MyRoutes from './Routes';
+
+	function App() {
+		return (
+			<Router>
+				<MyRoutes />
+			</Router>
+		);
+	}
+
+	export default App;
+	`;
 
 	const indexContent = `
 	import React from 'react';
@@ -220,7 +299,7 @@ yarn-error.log*`;
 User-agent: *
 Disallow:`;
 
-	const folderName: string = appName || 'my-app';
+	const folderName: string = appName;
 
 	// Verifica se a pasta existe
 	if (fs.existsSync(folderName)) {
@@ -235,6 +314,8 @@ Disallow:`;
 	fs.mkdirSync(folderName + '/src/components');
 	fs.mkdirSync(folderName + '/src/configs');
 	fs.mkdirSync(folderName + '/src/pages');
+	fs.mkdirSync(folderName + '/src/Main');
+	fs.mkdirSync(folderName + '/src/NotFound');
 	fs.mkdirSync(folderName + '/src/Routes');
 	fs.mkdirSync(folderName + '/src/styles');
 	fs.mkdirSync(folderName + '/src/types');
@@ -244,6 +325,11 @@ Disallow:`;
 	fs.writeFileSync(folderName + '/public/static/robots.txt', robotsContent);
 
 	fs.writeFileSync(folderName + '/public/index.html', indexHtmlContent);
+
+	fs.writeFileSync(folderName + '/src/pages/Main/index.tsx', mainPageContent);
+	fs.writeFileSync(folderName + '/src/pages/NotFound/index.tsx', notFoundPage);
+	fs.writeFileSync(folderName + '/src/pages/NotFound/NotFound.css', notFoundPageCss);
+	fs.writeFileSync(folderName + '/src/Routes/index.tsx', routesContent);
 
 	fs.writeFileSync(folderName + '/src/App.tsx', appContent);
 

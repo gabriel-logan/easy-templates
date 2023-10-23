@@ -1,6 +1,6 @@
 {
   "name": "easy-templates",
-	"author": "Gabriel Logan",
+  "author": "Gabriel Logan",
   "version": "0.0.1",
   "description": "easy-templates - A library for creating various templates easily and efficiently using NPX.",
   "bin": "bin/index.js",
@@ -11,13 +11,20 @@
     "prepublishmajor": "npx tsc && npm version major && npm publish"
   },
   "keywords": [
-    "templates", "cra-templates", "node-templates", "npm-templates", "CLI", "cli", "Cli", "Documentation"
+    "templates",
+    "cra-templates",
+    "node-templates",
+    "npm-templates",
+    "CLI",
+    "cli",
+    "Cli",
+    "Documentation"
   ],
-	"repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/gabriel-logan/easy-templates.git"
   },
-	"bugs": {
+  "bugs": {
     "url": "https://github.com/gabriel-logan/easy-templates/issues"
   },
   "homepage": "https://github.com/gabriel-logan/easy-templates#readme",

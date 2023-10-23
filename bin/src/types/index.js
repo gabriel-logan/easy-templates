@@ -1,6 +1,6 @@
-var templateChoices = ['reactjs_ts_webpack_react-router-dom'];
-var packageManager = ['yarn', 'npm'];
-export var questions = [
+const templateChoices = ['reactjs_ts_webpack_react-router-dom'];
+const packageManager = ['yarn', 'npm'];
+export const questions = [
     {
         type: 'list',
         name: 'packageManager',
