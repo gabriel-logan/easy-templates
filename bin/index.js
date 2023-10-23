@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 import inquirer from 'inquirer';
 import path from 'path';
-import fs from 'fs';
 import criarEstruturaDePastasReactTsWebpack from './src/react-ts-webpack/index.js';
 import { questions } from './src/types/index.js';
 inquirer.prompt(questions).then((answers) => {
@@ -14,7 +13,6 @@ inquirer.prompt(questions).then((answers) => {
         appLicense: answers.appLicense || 'ISC',
         selectedTemplate: answers.template,
     };
-    fs.writeFileSync('userInput.json', JSON.stringify(userInput, null, 2));
     if (userInput.selectedTemplate === 'reactjs_ts_webpack_react-router-dom_styled-components_babel') {
         criarEstruturaDePastasReactTsWebpack(userInput);
     }
