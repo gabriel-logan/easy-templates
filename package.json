@@ -4,6 +4,7 @@
   "version": "0.0.5",
   "description": "easy-templates - A library for creating various templates easily and efficiently using NPX.",
   "bin": "bin/index.js",
+	"types": "types",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishpatch": "npx tsc && npm version patch && npm publish",
@@ -33,21 +34,21 @@
   ],
   "type": "module",
   "license": "MIT",
+  "dependencies": {
+    "cross-spawn": "^7.0.3",
+    "inquirer": "^9.2.11"
+  },
   "devDependencies": {
     "@types/cross-spawn": "^6.0.4",
     "@types/inquirer": "^9.0.6",
     "@types/node": "^20.8.7",
-    "@typescript-eslint/eslint-plugin": "^6.8.0",
-    "@typescript-eslint/parser": "^6.8.0",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
     "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.0.3",
     "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
-  },
-  "dependencies": {
-    "cross-spawn": "^7.0.3",
-    "inquirer": "^9.2.11"
   }
 }

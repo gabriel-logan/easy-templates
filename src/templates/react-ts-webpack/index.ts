@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import { exec } from 'child_process';
 import spawn from 'cross-spawn';
-import { userInputProps } from '../types/index';
+import { UserInputProps } from '../../types/index';
 
 // Função para criar a estrutura de pastas e arquivos
 
@@ -11,7 +11,7 @@ function criarEstruturaDePastasReactTsWebpackRouterDomBabel({
 	appDescription,
 	appLicense,
 	appName,
-}: userInputProps) {
+}: UserInputProps) {
 	const notFoundPageContent = `import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
