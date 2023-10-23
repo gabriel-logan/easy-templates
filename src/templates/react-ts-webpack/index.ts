@@ -231,39 +231,8 @@ root.render(
 		"start": "webpack serve --mode development",
 		"build": "webpack --mode production"
 	},
-	"dependencies": {
-		"react": "^18.2.0",
-		"react-dom": "^18.2.0",
-		"react-router-dom": "^6.17.0",
-		"styled-components": "^6.1.0"
-	},
-	"devDependencies": {
-		"@babel/core": "^7.23.2",
-		"@babel/preset-env": "^7.23.2",
-		"@babel/preset-react": "^7.22.15",
-		"@types/node": "^20.8.7",
-		"@types/react": "^18.2.29",
-		"@types/react-dom": "^18.2.13",
-		"@types/react-router-dom": "^5.3.3",
-		"@typescript-eslint/eslint-plugin": "^6.8.0",
-		"@typescript-eslint/parser": "^6.8.0",
-		"babel-loader": "^9.1.3",
-		"copy-webpack-plugin": "^11.0.0",
-		"css-loader": "^6.8.1",
-		"eslint": "^8.51.0",
-		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-prettier": "^5.0.1",
-		"eslint-plugin-react-hooks": "^4.6.0",
-		"html-webpack-plugin": "^5.5.3",
-		"prettier": "^3.0.3",
-		"style-loader": "^3.3.3",
-		"ts-loader": "^9.5.0",
-		"ts-node": "^10.9.1",
-		"typescript": "^5.2.2",
-		"webpack": "^5.89.0",
-		"webpack-cli": "^5.1.4",
-		"webpack-dev-server": "^4.15.1"
-	}
+	"dependencies": {},
+	"devDependencies": {}
 }`;
 
 	const prettierContent = `module.exports = {
@@ -476,12 +445,66 @@ export default GlobalStyleComponent;`;
 
 	fs.writeFileSync(folderName + '/README.md', readmeContent);
 
-	const child = spawn(packageManager, ['install'], { cwd: folderName, stdio: 'inherit' });
+	let installDependencies: string[] = ['install'];
+
+	let installDevDependencies: string[] = ['install'];
+
+	const dependencies = ['react', 'react-dom', 'react-router-dom', 'styled-components'];
+
+	const devDependencies = [
+		'@babel/core',
+		'@babel/preset-env',
+		'@babel/preset-react',
+		'@types/node',
+		'@types/react',
+		'@types/react-dom',
+		'@types/react-router-dom',
+		'@typescript-eslint/eslint-plugin',
+		'@typescript-eslint/parser',
+		'babel-loader',
+		'copy-webpack-plugin',
+		'css-loader',
+		'eslint',
+		'eslint-config-prettier',
+		'eslint-plugin-prettier',
+		'eslint-plugin-react-hooks',
+		'html-webpack-plugin',
+		'prettier',
+		'style-loader',
+		'ts-loader',
+		'ts-node',
+		'typescript',
+		'webpack',
+		'webpack-cli',
+		'webpack-dev-server',
+	];
+
+	switch (packageManager) {
+		case 'yarn':
+			installDependencies = ['add', ...dependencies];
+			installDevDependencies = ['add', '--dev', ...devDependencies];
+			break;
+
+		default:
+			installDependencies = ['install', ...dependencies];
+			installDevDependencies = ['install', 'save-dev', ...devDependencies];
+			break;
+	}
+
+	const child = spawn(packageManager, installDependencies, { cwd: folderName, stdio: 'inherit' });
 
 	child.on('exit', (code) => {
 		if (code === 0) {
-			console.log('\nFolder structure created and dependencies installed successfully\n');
-			console.log(`# My App
+			const child2devDep = spawn(packageManager, installDevDependencies, {
+				cwd: folderName,
+				stdio: 'inherit',
+			});
+
+			child2devDep.on('exit', (code) => {
+				if (code === 0) {
+					console.log('\nFolder structure created and dependencies installed successfully\n');
+
+					console.log(`# My App
 
 This is my app.
 
@@ -501,26 +524,28 @@ Then, open [http://localhost:3000] to view it in the browser.
 
 ## License Gabriel Logan Copyright 2023
 
-## Happy hacking (:\n`);
+## Happy hacking (: \n`);
 
-			exec(
-				packageManager === 'npm'
-					? `cd ${folderName} && npm run lint`
-					: `cd ${folderName} && yarn lint`,
-			);
+					exec(
+						packageManager === 'npm'
+							? `cd ${folderName} && npm run lint`
+							: `cd ${folderName} && yarn lint`,
+					);
 
-			// Navega para o diretório folderName
-			const child2 = spawn('cd', [folderName]);
+					// Navega para o diretório folderName
+					const child2 = spawn('cd', [folderName]);
 
-			child2.on('exit', (code) => {
-				if (code === 0) {
-					console.log(`Run npm start or yarn start - ${folderName} directory`);
+					child2.on('exit', (code) => {
+						if (code === 0) {
+							console.log(`Run npm start or yarn start - ${folderName} directory`);
+						} else {
+							console.error(`Error navigating to the ${folderName} directory`);
+						}
+					});
 				} else {
-					console.error(`Error navigating to the ${folderName} directory`);
+					console.error(`Error running '${packageManager} install' with exit code ${code}`);
 				}
 			});
-
-			// Resto do seu código aqui
 		} else {
 			console.error(`Error running '${packageManager} install' with exit code ${code}`);
 		}
