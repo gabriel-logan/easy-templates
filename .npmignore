@@ -1,0 +1,10 @@
+.editorconfig
+.eslintrc.js
+.gitignore
+.npmignore
+.prettierrc.js
+*.ts
+*.json
+!package.json
+*.lock
+src/
