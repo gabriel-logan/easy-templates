@@ -1,7 +1,7 @@
 {
   "name": "easy-templates",
   "author": "Gabriel Logan",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "easy-templates - A library for creating various templates easily and efficiently using NPX.",
   "bin": "bin/index.js",
   "types": "types",
