@@ -5,105 +5,207 @@ import { userInputProps } from '../types/index';
 
 // Função para criar a estrutura de pastas e arquivos
 
-function criarEstruturaDePastasReactTsWebpack({
+function criarEstruturaDePastasReactTsWebpackRouterDomBabel({
 	packageManager,
 	appAuthor,
 	appDescription,
 	appLicense,
 	appName,
 }: userInputProps) {
-	const notFoundPage = `import React from 'react';
-	import './NotFound.css'; // Importe seu arquivo de estilo CSS
+	const notFoundPageContent = `import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
-	function NotFound() {
-		return (
-			<div className="not-found-container">
-				<h1>404 - Page Not Found</h1>
-				<p>The page you are looking for does not exist.</p>
-				<p>Go back to the <a href="/">home page</a>.</p>
-			</div>
-		);
+const NotFoundContainer = styled.div\`
+	text-align: center;
+	margin-top: 100px;
+	font-family: Arial, sans-serif;
+\`;
+
+const NotFoundHeading = styled.h1\`
+	font-size: 2em;
+	color: #ff0000;
+\`;
+
+const NotFoundText = styled.p\`
+	font-size: 1.2em;
+\`;
+
+const NotFoundLink = styled(Link)\`
+	text-decoration: none;
+	color: #0074d9;
+\`;
+
+function NotFound() {
+	return (
+		<NotFoundContainer>
+			<NotFoundHeading>404 - Page Not Found</NotFoundHeading>
+			<NotFoundText>The page you are looking for does not exist.</NotFoundText>
+			<NotFoundText>
+				Go back to the <NotFoundLink to="/">home page</NotFoundLink>.
+			</NotFoundText>
+		</NotFoundContainer>
+	);
+}
+
+export default NotFound;`;
+
+	const mainPageContent = `import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import styled, { keyframes } from 'styled-components';
+
+interface UserData {
+	login: string;
+	html_url: string;
+	name: string;
+	avatar_url: string;
+	followers: number;
+	following: number;
+	public_repos: number;
+	created_at: string;
+	updated_at: string;
+}
+
+const PageContainer = styled.div\`
+	font-family: Arial, sans-serif;
+\`;
+
+const IntroContainer = styled.div\`
+	background-color: #0074d9;
+	color: white;
+	padding: 20px;
+	text-align: center;
+\`;
+
+const MainContainer = styled.main\`
+	text-align: center;
+	padding: 20px;
+\`;
+
+const MainHeading = styled.h1\`
+	font-size: 2em;
+\`;
+
+const MainText = styled.p\`
+	font-size: 1.2em;
+\`;
+
+const Image = styled.img\`
+	border-radius: 50px;
+	width: 150px;
+	animation: rotate 4s linear infinite;
+\`;
+
+const rotate = keyframes\`
+	from {
+		transform: rotate(0deg);
 	}
-
-	export default NotFound;`;
-	const notFoundPageCss = `.not-found-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-height: 100vh;
-text-align: center;
-}
-
-h1 {
-font-size: 4rem;
-color: #FF5722; /* Cor do título */
-}
-
-p {
-font-size: 1.5rem;
-margin: 0.5rem 0;
-}
-
-a {
-color: #2196F3; /* Cor do link */
-text-decoration: none;
-font-weight: bold;
-}
-
-a:hover {
-text-decoration: underline;
-}`;
-
-	const mainPageContent = `import React from 'react';
-
-	function Main() {
-		return (
-			<div>
-				<h1>Hello, World!</h1>
-				<h1>App criado pelo Logan</h1>
-			</div>
-		);
+	to {
+		transform: rotate(360deg);
 	}
+\`;
 
-	export default Main;`;
+const DivWithAnimation = styled.div\`
+	animation: \${rotate} 4s linear infinite;
+\`;
+
+const H4 = styled.h4\`
+	color: #0074d9;
+	font-size: 1.5em;
+\`;
+
+function Main() {
+	const [userData, setUserData] = useState<UserData | null>(null);
+
+	useEffect(() => {
+		const fetchUserData = async () => {
+			try {
+				const response = await fetch('https://api.github.com/users/gabriel-logan');
+				if (response.ok) {
+					const data: UserData = await response.json();
+					setUserData(data);
+				} else {
+					console.error('Error fetching data:', response.status);
+				}
+			} catch (error) {
+				console.error('Error fetching data:', error);
+			}
+		};
+
+		fetchUserData();
+	}, []);
+
+	return (
+		<PageContainer>
+			<IntroContainer>
+				<MainHeading>My React Template</MainHeading>
+				<MainText>This is a demo page created with my own React template.</MainText>
+				{userData && <MainText>Created by: {userData.name}</MainText>}
+			</IntroContainer>
+			<MainContainer>
+				{userData ? (
+					<div>
+						<DivWithAnimation>
+							<Image src={userData.avatar_url} alt="photo" />
+						</DivWithAnimation>
+						<MainHeading>Welcome to my demo page</MainHeading>
+						<H4>Application started successfully!!!</H4>
+						<MainText>This is an example of how you can use the GitHub API:</MainText>
+						<MainText>Name: {userData.name || 'Name not provided'}</MainText>
+						<MainText>Username: {userData.login}</MainText>
+						<MainText>Followers: {userData.followers}</MainText>
+						<MainText>Following: {userData.following}</MainText>
+						<Link to={userData.html_url} target="_blank">
+							Visit my GitHub profile
+						</Link>
+					</div>
+				) : (
+					<MainText>Loading user data...</MainText>
+				)}
+			</MainContainer>
+		</PageContainer>
+	);
+}
+
+export default Main;`;
 
 	const routesContent = `import React from 'react';
-	// Server routes
-	import { Route, Routes } from 'react-router-dom';
+// Server routes
+import { Route, Routes } from 'react-router-dom';
 
-	// Page 404
-	import NotFoundPage from '../pages/NotFoundPage';
+// Page 404
+import NotFoundPage from '../pages/NotFoundPage';
 
-	// My Pages
-	import Main from '../pages/Main';
+// My Pages
+import Main from '../pages/Main';
 
-	export default function ConfigRoutes() {
-		return (
-			<Routes>
-				<Route path="/" element={<Main />} />
-				<Route path="*" element={<NotFoundPage />} />
-			</Routes>
-		);
-	}
-	`;
+export default function ConfigRoutes() {
+	return (
+		<Routes>
+			<Route path="/" element={<Main />} />
+			<Route path="*" element={<NotFoundPage />} />
+		</Routes>
+	);
+}`;
 
 	const appContent = `import React from 'react';
 
-	import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
-	import MyRoutes from './Routes';
+import MyRoutes from './Routes';
 
-	function App() {
-		return (
-			<Router>
-				<MyRoutes />
-			</Router>
-		);
-	}
+import GlobalStyleComponent from './styles/global';
 
-	export default App;
-	`;
+function App() {
+	return (
+		<Router>
+			<GlobalStyleComponent />
+			<MyRoutes />
+		</Router>
+	);
+}
+
+export default App;`;
 
 	const indexContent = `
 	import React from 'react';
@@ -134,7 +236,8 @@ text-decoration: underline;
 	"dependencies": {
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"react-router-dom": "^6.17.0"
+		"react-router-dom": "^6.17.0",
+		"styled-components": "^6.1.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.23.2",
@@ -299,6 +402,26 @@ yarn-error.log*`;
 User-agent: *
 Disallow:`;
 
+	const globalStylesContent = `import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyleComponent = createGlobalStyle\`
+	body{
+		margin: 0;
+    padding: 0;
+	}
+	section{
+		min-height: 100vh;
+	}
+	button{
+		cursor: pointer;
+	}
+	a{
+		cursor: pointer;
+	}
+\`;
+
+export default GlobalStyleComponent;`;
+
 	const folderName: string = appName;
 
 	// Verifica se a pasta existe
@@ -318,6 +441,7 @@ Disallow:`;
 	fs.mkdirSync(folderName + '/src/pages/NotFound');
 	fs.mkdirSync(folderName + '/src/Routes');
 	fs.mkdirSync(folderName + '/src/styles');
+	fs.mkdirSync(folderName + '/src/styles/global');
 	fs.mkdirSync(folderName + '/src/types');
 	fs.mkdirSync(folderName + '/public');
 	fs.mkdirSync(folderName + '/public/static');
@@ -327,9 +451,10 @@ Disallow:`;
 	fs.writeFileSync(folderName + '/public/index.html', indexHtmlContent);
 
 	fs.writeFileSync(folderName + '/src/pages/Main/index.tsx', mainPageContent);
-	fs.writeFileSync(folderName + '/src/pages/NotFound/index.tsx', notFoundPage);
-	fs.writeFileSync(folderName + '/src/pages/NotFound/NotFound.css', notFoundPageCss);
+	fs.writeFileSync(folderName + '/src/pages/NotFound/index.tsx', notFoundPageContent);
 	fs.writeFileSync(folderName + '/src/Routes/index.tsx', routesContent);
+
+	fs.writeFileSync(folderName + '/src/styles/global/index.ts', globalStylesContent);
 
 	fs.writeFileSync(folderName + '/src/App.tsx', appContent);
 
@@ -389,4 +514,4 @@ Then, open [http://localhost:3000] to view it in the browser.
 	});
 }
 
-export default criarEstruturaDePastasReactTsWebpack;
+export default criarEstruturaDePastasReactTsWebpackRouterDomBabel;

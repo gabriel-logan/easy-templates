@@ -20,7 +20,7 @@ npx easy-templates
 
 ## Available Templates Modules
 
-- **reactjs_ts_webpack_react-router-dom**: Reactjs with typescript webpack and react-router-dom pre configured
+- **reactjs_ts_webpack_react-router-dom_styled-components_babel**: Reactjs with typescript, webpack, react-router-dom and styled-components pre configured
 
 ### Help the dev
 

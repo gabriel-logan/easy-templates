@@ -21,7 +21,9 @@ inquirer.prompt(questions).then((answers) => {
 	// Salve as informações em um arquivo JSON intermediário
 	fs.writeFileSync('userInput.json', JSON.stringify(userInput, null, 2));
 
-	if (userInput.selectedTemplate === 'reactjs_ts_webpack_react-router-dom') {
+	if (
+		userInput.selectedTemplate === 'reactjs_ts_webpack_react-router-dom_styled-components_babel'
+	) {
 		criarEstruturaDePastasReactTsWebpack(userInput);
 	} else {
 		console.error("This template doesn't exist");
