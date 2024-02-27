@@ -25,6 +25,10 @@ Templates
 - **reactjs_ts_webpack_react-router-dom_styled-components_babel**: Reactjs with typescript, webpack, react-router-dom and styled-components pre configured
 - **simple-Html-Js-Css-Structure**: Create a simple structure using html css and javascript
 
+- **js-express-sequelise-dotenv-nodemon-sucrase**: Creates a server structure using pre-configured (express and javascript).
+
+- **ts-express-sequelise-dotenv-nodemon-tsnode**: Creates a server structure using pre-configured (express and typescript).
+
 Pre configs only
 
 - **js-eslint-generic**: Run a sub runner asking for several custom options
