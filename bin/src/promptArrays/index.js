@@ -1,6 +1,8 @@
 export var templateChoices = [
     'reactjs_ts_webpack_react-router-dom_styled-components_babel',
     'simple-Html-Js-Css-Structure',
+    'js-express-sequelise-dotenv-nodemon-sucrase',
+    'ts-express-sequelise-dotenv-nodemon-tsnode',
 ];
 export var packageManager = ['npm', 'yarn'];
 export var firstChoice = ['Complete template', 'Separete files'];

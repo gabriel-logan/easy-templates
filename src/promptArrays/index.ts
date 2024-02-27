@@ -1,6 +1,8 @@
 export const templateChoices = [
 	'reactjs_ts_webpack_react-router-dom_styled-components_babel',
 	'simple-Html-Js-Css-Structure',
+	'js-express-sequelise-dotenv-nodemon-sucrase',
+	'ts-express-sequelise-dotenv-nodemon-tsnode',
 ] as const;
 
 export const packageManager = ['npm', 'yarn'] as const;

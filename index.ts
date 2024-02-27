@@ -13,6 +13,8 @@ import criarEstruturaDePastasReactTsWebpack from './src/templates/react-ts-webpa
 import createAndInstallTsEslintPrettier from './src/presets/ts-eslint-prettier/index.js';
 import simpleHtmlJsCssStructure from './src/templates/simpleHtmlJsCssStructure/index.js';
 import createAndInstallJsEslint from './src/presets/js-eslint/index.js';
+import jsExpressSequeliseDotenvNodemonSucraseServerFolderStruct from './src/templates/js-express-sequelise-dotenv-nodemon-sucrase/index.js';
+import tsExpressSequeliseDotenvNodemonServerFolderStruct from './src/templates/ts-express-sequelise-dotenv-nodemon/index.js';
 
 inquirer.prompt(firstQuestion).then((answer) => {
 	const userFisrtInput: FirstsQuestionProps = {
@@ -40,6 +42,14 @@ inquirer.prompt(firstQuestion).then((answer) => {
 
 				case 'simple-Html-Js-Css-Structure':
 					simpleHtmlJsCssStructure(userInput);
+					break;
+
+				case 'js-express-sequelise-dotenv-nodemon-sucrase':
+					jsExpressSequeliseDotenvNodemonSucraseServerFolderStruct(userInput);
+					break;
+
+				case 'ts-express-sequelise-dotenv-nodemon-tsnode':
+					tsExpressSequeliseDotenvNodemonServerFolderStruct(userInput);
 					break;
 
 				default:
