@@ -6,6 +6,7 @@ module.exports = {
 		"plugin:prettier/recommended",
 	],
 	parser: "@typescript-eslint/parser",
+	ignorePatterns: ["node_modules/", "dist/", "bin/"],
 	plugins: ["@typescript-eslint"],
 	root: true,
 	rules: {},

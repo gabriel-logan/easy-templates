@@ -7,5 +7,7 @@
 *.json
 !package.json
 *.lock
-src/
+/src/
 types/
+.yarn/
+.yarnrc.yml
