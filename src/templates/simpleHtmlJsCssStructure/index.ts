@@ -1,6 +1,6 @@
-import * as fs from 'fs';
-import path from 'path';
-import { UserInputProps } from '../../types/index';
+import * as fs from "fs";
+import path from "path";
+import { UserInputProps } from "../../types/index";
 
 function simpleHtmlJsCssStructure({
 	appAuthor,
@@ -12,7 +12,7 @@ function simpleHtmlJsCssStructure({
 
 	const packageJson = {
 		name: appName,
-		version: '1.0.0',
+		version: "1.0.0",
 		description: appDescription,
 		scripts: {
 			test: 'echo "Error: no test specified" && exit 1',
@@ -30,11 +30,11 @@ function simpleHtmlJsCssStructure({
 	// Create the root directory
 	if (!fs.existsSync(rootFolder)) fs.mkdirSync(rootFolder);
 
-	if (!fs.existsSync(rootFolder + '/package.json'))
-		fs.writeFileSync(rootFolder + '/package.json', JSON.stringify(packageJson, null, 2));
+	if (!fs.existsSync(rootFolder + "/package.json"))
+		fs.writeFileSync(rootFolder + "/package.json", JSON.stringify(packageJson, null, 2));
 
 	// Create the index.html file with extended content
-	const indexHtml = path.join(rootFolder, 'index.html');
+	const indexHtml = path.join(rootFolder, "index.html");
 
 	if (!fs.existsSync(indexHtml)) {
 		fs.writeFileSync(
@@ -85,11 +85,11 @@ function simpleHtmlJsCssStructure({
 	}
 
 	// Create the css folder
-	const cssFolder = path.join(rootFolder, 'css');
+	const cssFolder = path.join(rootFolder, "css");
 	if (!fs.existsSync(cssFolder)) fs.mkdirSync(cssFolder);
 
 	// Create the style.css file with some basic styling
-	const styleCss = path.join(cssFolder, 'style.css');
+	const styleCss = path.join(cssFolder, "style.css");
 	if (!fs.existsSync(styleCss)) {
 		fs.writeFileSync(
 			styleCss,
@@ -138,11 +138,11 @@ footer {
 	}
 
 	// Create the js folder
-	const jsFolder = path.join(rootFolder, 'js');
+	const jsFolder = path.join(rootFolder, "js");
 	if (!fs.existsSync(jsFolder)) fs.mkdirSync(jsFolder);
 
 	// Create the script.js file with some JavaScript code
-	const scriptJs = path.join(jsFolder, 'script.js');
+	const scriptJs = path.join(jsFolder, "script.js");
 
 	if (!fs.existsSync(scriptJs)) {
 		fs.writeFileSync(

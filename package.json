@@ -9,7 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepublishpatch": "npx tsc && npm version patch && npm publish",
     "prepublishminor": "npx tsc && npm version minor && npm publish",
-    "prepublishmajor": "npx tsc && npm version major && npm publish"
+    "prepublishmajor": "npx tsc && npm version major && npm publish",
+    "lint": "eslint . --ext .ts",
+    "prettier": "prettier --write ."
   },
   "keywords": [
     "templates",
@@ -44,12 +46,12 @@
     "@types/node": "^20.8.7",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
-    "eslint": "^8.52.0",
+    "eslint": "^8",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
-    "prettier": "^3.0.3",
+    "prettier": "^3.3.3",
     "ts-node": "^10.9.1",
-    "typescript": "^5.2.2"
+    "typescript": "^5.6.3"
   },
   "packageManager": "yarn@4.5.0"
 }

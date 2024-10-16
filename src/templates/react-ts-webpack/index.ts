@@ -1,7 +1,7 @@
-import * as fs from 'fs';
-import { exec } from 'child_process';
-import spawn from 'cross-spawn';
-import { UserInputProps } from '../../types/index';
+import * as fs from "fs";
+import { exec } from "child_process";
+import spawn from "cross-spawn";
+import { UserInputProps } from "../../types/index";
 
 // Função para criar a estrutura de pastas e arquivos
 
@@ -400,109 +400,109 @@ export default GlobalStyleComponent;`;
 	// Cria a pasta após a verificação
 	fs.mkdirSync(folderName);
 
-	fs.mkdirSync(folderName + '/src');
-	fs.mkdirSync(folderName + '/src/components');
-	fs.mkdirSync(folderName + '/src/configs');
-	fs.mkdirSync(folderName + '/src/pages');
-	fs.mkdirSync(folderName + '/src/pages/Main');
-	fs.mkdirSync(folderName + '/src/pages/NotFound');
-	fs.mkdirSync(folderName + '/src/Routes');
-	fs.mkdirSync(folderName + '/src/styles');
-	fs.mkdirSync(folderName + '/src/styles/global');
-	fs.mkdirSync(folderName + '/src/types');
-	fs.mkdirSync(folderName + '/public');
-	fs.mkdirSync(folderName + '/public/static');
+	fs.mkdirSync(folderName + "/src");
+	fs.mkdirSync(folderName + "/src/components");
+	fs.mkdirSync(folderName + "/src/configs");
+	fs.mkdirSync(folderName + "/src/pages");
+	fs.mkdirSync(folderName + "/src/pages/Main");
+	fs.mkdirSync(folderName + "/src/pages/NotFound");
+	fs.mkdirSync(folderName + "/src/Routes");
+	fs.mkdirSync(folderName + "/src/styles");
+	fs.mkdirSync(folderName + "/src/styles/global");
+	fs.mkdirSync(folderName + "/src/types");
+	fs.mkdirSync(folderName + "/public");
+	fs.mkdirSync(folderName + "/public/static");
 
-	fs.writeFileSync(folderName + '/public/static/robots.txt', robotsContent);
+	fs.writeFileSync(folderName + "/public/static/robots.txt", robotsContent);
 
-	fs.writeFileSync(folderName + '/public/index.html', indexHtmlContent);
+	fs.writeFileSync(folderName + "/public/index.html", indexHtmlContent);
 
-	fs.writeFileSync(folderName + '/src/pages/Main/index.tsx', mainPageContent);
-	fs.writeFileSync(folderName + '/src/pages/NotFound/index.tsx', notFoundPageContent);
-	fs.writeFileSync(folderName + '/src/Routes/index.tsx', routesContent);
+	fs.writeFileSync(folderName + "/src/pages/Main/index.tsx", mainPageContent);
+	fs.writeFileSync(folderName + "/src/pages/NotFound/index.tsx", notFoundPageContent);
+	fs.writeFileSync(folderName + "/src/Routes/index.tsx", routesContent);
 
-	fs.writeFileSync(folderName + '/src/styles/global/index.ts', globalStylesContent);
+	fs.writeFileSync(folderName + "/src/styles/global/index.ts", globalStylesContent);
 
-	fs.writeFileSync(folderName + '/src/App.tsx', appContent);
+	fs.writeFileSync(folderName + "/src/App.tsx", appContent);
 
-	fs.writeFileSync(folderName + '/src/index.tsx', indexContent);
+	fs.writeFileSync(folderName + "/src/index.tsx", indexContent);
 
-	fs.writeFileSync(folderName + '/package.json', packageJsonContent);
+	fs.writeFileSync(folderName + "/package.json", packageJsonContent);
 
-	fs.writeFileSync(folderName + '/tsconfig.json', tsconfigContent);
+	fs.writeFileSync(folderName + "/tsconfig.json", tsconfigContent);
 
-	fs.writeFileSync(folderName + '/webpack.config.js', webpackContent);
+	fs.writeFileSync(folderName + "/webpack.config.js", webpackContent);
 
-	fs.writeFileSync(folderName + '/.gitignore', gitIgnoreContent);
+	fs.writeFileSync(folderName + "/.gitignore", gitIgnoreContent);
 
-	fs.writeFileSync(folderName + '/.eslintrc.js', eslintContent);
+	fs.writeFileSync(folderName + "/.eslintrc.js", eslintContent);
 
-	fs.writeFileSync(folderName + '/.eslintignore', 'webpack.config.js');
+	fs.writeFileSync(folderName + "/.eslintignore", "webpack.config.js");
 
-	fs.writeFileSync(folderName + '/.babelrc', babelRcContent);
+	fs.writeFileSync(folderName + "/.babelrc", babelRcContent);
 
-	fs.writeFileSync(folderName + '/.prettierrc.js', prettierContent);
+	fs.writeFileSync(folderName + "/.prettierrc.js", prettierContent);
 
-	fs.writeFileSync(folderName + '/README.md', readmeContent);
+	fs.writeFileSync(folderName + "/README.md", readmeContent);
 
-	let installDependencies: string[] = ['install'];
+	let installDependencies: string[] = ["install"];
 
-	let installDevDependencies: string[] = ['install'];
+	let installDevDependencies: string[] = ["install"];
 
-	const dependencies = ['react', 'react-dom', 'react-router-dom', 'styled-components'];
+	const dependencies = ["react", "react-dom", "react-router-dom", "styled-components"];
 
 	const devDependencies = [
-		'@babel/core',
-		'@babel/preset-env',
-		'@babel/preset-react',
-		'@types/node',
-		'@types/react',
-		'@types/react-dom',
-		'@types/react-router-dom',
-		'@typescript-eslint/eslint-plugin',
-		'@typescript-eslint/parser',
-		'babel-loader',
-		'copy-webpack-plugin',
-		'css-loader',
-		'eslint',
-		'eslint-config-prettier',
-		'eslint-plugin-prettier',
-		'eslint-plugin-react-hooks',
-		'html-webpack-plugin',
-		'prettier',
-		'style-loader',
-		'ts-loader',
-		'ts-node',
-		'typescript',
-		'webpack',
-		'webpack-cli',
-		'webpack-dev-server',
+		"@babel/core",
+		"@babel/preset-env",
+		"@babel/preset-react",
+		"@types/node",
+		"@types/react",
+		"@types/react-dom",
+		"@types/react-router-dom",
+		"@typescript-eslint/eslint-plugin",
+		"@typescript-eslint/parser",
+		"babel-loader",
+		"copy-webpack-plugin",
+		"css-loader",
+		"eslint",
+		"eslint-config-prettier",
+		"eslint-plugin-prettier",
+		"eslint-plugin-react-hooks",
+		"html-webpack-plugin",
+		"prettier",
+		"style-loader",
+		"ts-loader",
+		"ts-node",
+		"typescript",
+		"webpack",
+		"webpack-cli",
+		"webpack-dev-server",
 	];
 
 	switch (packageManager) {
-		case 'yarn':
-			installDependencies = ['add', ...dependencies];
-			installDevDependencies = ['add', '--dev', ...devDependencies];
+		case "yarn":
+			installDependencies = ["add", ...dependencies];
+			installDevDependencies = ["add", "--dev", ...devDependencies];
 			break;
 
 		default:
-			installDependencies = ['install', ...dependencies];
-			installDevDependencies = ['install', 'save-dev', ...devDependencies];
+			installDependencies = ["install", ...dependencies];
+			installDevDependencies = ["install", "save-dev", ...devDependencies];
 			break;
 	}
 
-	const child = spawn(packageManager, installDependencies, { cwd: folderName, stdio: 'inherit' });
+	const child = spawn(packageManager, installDependencies, { cwd: folderName, stdio: "inherit" });
 
-	child.on('exit', (code) => {
+	child.on("exit", (code) => {
 		if (code === 0) {
 			const child2devDep = spawn(packageManager, installDevDependencies, {
 				cwd: folderName,
-				stdio: 'inherit',
+				stdio: "inherit",
 			});
 
-			child2devDep.on('exit', (code) => {
+			child2devDep.on("exit", (code) => {
 				if (code === 0) {
-					console.log('\nFolder structure created and dependencies installed successfully\n');
+					console.log("\nFolder structure created and dependencies installed successfully\n");
 
 					console.log(`# My App
 
@@ -527,15 +527,15 @@ Then, open [http://localhost:3000] to view it in the browser.
 ## Happy hacking (: \n`);
 
 					exec(
-						packageManager === 'npm'
+						packageManager === "npm"
 							? `cd ${folderName} && npm run lint`
 							: `cd ${folderName} && yarn lint`,
 					);
 
 					// Navega para o diretório folderName
-					const child2 = spawn('cd', [folderName]);
+					const child2 = spawn("cd", [folderName]);
 
-					child2.on('exit', (code) => {
+					child2.on("exit", (code) => {
 						if (code === 0) {
 							console.log(`Run npm start or yarn start - ${folderName} directory`);
 						} else {

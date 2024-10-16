@@ -1,20 +1,20 @@
-import spawn from 'cross-spawn';
-import { SeparetedFiles } from '../../types/index';
-import * as fs from 'fs';
+import spawn from "cross-spawn";
+import { SeparetedFiles } from "../../types/index";
+import * as fs from "fs";
 
 function installDependencies(
-	packageManager: SeparetedFiles['packageManager'],
+	packageManager: SeparetedFiles["packageManager"],
 	dependencies: string[],
 ) {
 	const args =
-		packageManager === 'npm'
-			? ['install', '--save-dev', ...dependencies]
-			: ['add', '--dev', ...dependencies];
+		packageManager === "npm"
+			? ["install", "--save-dev", ...dependencies]
+			: ["add", "--dev", ...dependencies];
 
-	const child = spawn(packageManager, args, { stdio: 'inherit' });
+	const child = spawn(packageManager, args, { stdio: "inherit" });
 
 	return new Promise<number>((resolve, reject) => {
-		child.on('exit', (code) => {
+		child.on("exit", (code) => {
 			if (code === 0) {
 				resolve(code);
 			} else {
@@ -45,35 +45,35 @@ module.exports = {
 	printWidth: 100,
 }`;
 
-	if (!fs.existsSync('.eslintrc.js')) fs.writeFileSync('.eslintrc.js', eslintContent);
-	if (!fs.existsSync('.prettierrc.js')) fs.writeFileSync('.prettierrc.js', prettierContent);
+	if (!fs.existsSync(".eslintrc.js")) fs.writeFileSync(".eslintrc.js", eslintContent);
+	if (!fs.existsSync(".prettierrc.js")) fs.writeFileSync(".prettierrc.js", prettierContent);
 
 	const dependenciesToInstall = [
-		'@typescript-eslint/parser',
-		'@typescript-eslint/eslint-plugin',
-		'eslint',
-		'typescript',
-		'prettier',
-		'eslint-config-prettier',
-		'eslint-plugin-prettier',
-		'ts-node',
+		"@typescript-eslint/parser",
+		"@typescript-eslint/eslint-plugin",
+		"eslint",
+		"typescript",
+		"prettier",
+		"eslint-config-prettier",
+		"eslint-plugin-prettier",
+		"ts-node",
 	];
 
 	try {
 		await installDependencies(packageManager, dependenciesToInstall);
-		console.log('\ndependencies and devDependencies installed successfully\n');
+		console.log("\ndependencies and devDependencies installed successfully\n");
 		console.log(`# My App
 ## License Gabriel Logan Copyright 2023
 
 ## Happy hacking (:\n `);
 	} catch (error: unknown) {
 		switch (typeof error) {
-			case 'string':
+			case "string":
 				console.error(error); // Se for uma string, apenas imprima
 				break;
 
 			default:
-				console.error('An unknown error occurred.'); // Caso contrário, trate como erro desconhecido
+				console.error("An unknown error occurred."); // Caso contrário, trate como erro desconhecido
 				break;
 		}
 	}

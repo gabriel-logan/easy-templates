@@ -1,7 +1,7 @@
-import * as fs from 'fs';
-import { exec } from 'child_process';
-import spawn from 'cross-spawn';
-import { UserInputProps } from '../../types/index';
+import * as fs from "fs";
+import { exec } from "child_process";
+import spawn from "cross-spawn";
+import { UserInputProps } from "../../types/index";
 
 // Função para criar a estrutura de pastas e arquivos
 
@@ -106,64 +106,64 @@ module.exports = {
 	// Cria a pasta após a verificação
 	fs.mkdirSync(folderName);
 
-	fs.mkdirSync(folderName + '/src');
-	fs.mkdirSync(folderName + '/src/configs');
-	fs.mkdirSync(folderName + '/src/controllers');
-	fs.mkdirSync(folderName + '/src/database');
-	fs.mkdirSync(folderName + '/src/middlewares');
-	fs.mkdirSync(folderName + '/src/models');
-	fs.mkdirSync(folderName + '/src/routes');
+	fs.mkdirSync(folderName + "/src");
+	fs.mkdirSync(folderName + "/src/configs");
+	fs.mkdirSync(folderName + "/src/controllers");
+	fs.mkdirSync(folderName + "/src/database");
+	fs.mkdirSync(folderName + "/src/middlewares");
+	fs.mkdirSync(folderName + "/src/models");
+	fs.mkdirSync(folderName + "/src/routes");
 
-	fs.writeFileSync(folderName + '/src/app.js', appJsFile);
+	fs.writeFileSync(folderName + "/src/app.js", appJsFile);
 
-	fs.writeFileSync(folderName + '/src/server.js', serverJsFile);
+	fs.writeFileSync(folderName + "/src/server.js", serverJsFile);
 
-	fs.mkdirSync(folderName + '/uploads');
-	fs.mkdirSync(folderName + '/uploads/images');
+	fs.mkdirSync(folderName + "/uploads");
+	fs.mkdirSync(folderName + "/uploads/images");
 
-	fs.writeFileSync(folderName + '/.env', envFileExample);
+	fs.writeFileSync(folderName + "/.env", envFileExample);
 
-	fs.writeFileSync(folderName + '/.gitignore', gitIgnoreContent);
+	fs.writeFileSync(folderName + "/.gitignore", gitIgnoreContent);
 
-	fs.writeFileSync(folderName + '/.sequelizerc', sequelizeFile);
+	fs.writeFileSync(folderName + "/.sequelizerc", sequelizeFile);
 
-	fs.writeFileSync(folderName + '/nodemon.json', nodemonFile);
+	fs.writeFileSync(folderName + "/nodemon.json", nodemonFile);
 
-	fs.writeFileSync(folderName + '/package.json', packageJsonContent);
+	fs.writeFileSync(folderName + "/package.json", packageJsonContent);
 
-	fs.writeFileSync(folderName + '/README.md', readmeContent);
+	fs.writeFileSync(folderName + "/README.md", readmeContent);
 
 	let installDependencies: string[],
-		installDevDependencies: string[] = ['install'];
+		installDevDependencies: string[] = ["install"];
 
-	const dependencies = ['express', 'cors', 'dotenv', 'helmet', 'sequelize'];
+	const dependencies = ["express", "cors", "dotenv", "helmet", "sequelize"];
 
-	const devDependencies = ['nodemon', 'sequelize-cli', 'sucrase'];
+	const devDependencies = ["nodemon", "sequelize-cli", "sucrase"];
 
 	switch (packageManager) {
-		case 'yarn':
-			installDependencies = ['add', ...dependencies];
-			installDevDependencies = ['add', '--dev', ...devDependencies];
+		case "yarn":
+			installDependencies = ["add", ...dependencies];
+			installDevDependencies = ["add", "--dev", ...devDependencies];
 			break;
 
 		default:
-			installDependencies = ['install', ...dependencies];
-			installDevDependencies = ['install', 'save-dev', ...devDependencies];
+			installDependencies = ["install", ...dependencies];
+			installDevDependencies = ["install", "save-dev", ...devDependencies];
 			break;
 	}
 
-	const child = spawn(packageManager, installDependencies, { cwd: folderName, stdio: 'inherit' });
+	const child = spawn(packageManager, installDependencies, { cwd: folderName, stdio: "inherit" });
 
-	child.on('exit', (code) => {
+	child.on("exit", (code) => {
 		if (code === 0) {
 			const child2devDep = spawn(packageManager, installDevDependencies, {
 				cwd: folderName,
-				stdio: 'inherit',
+				stdio: "inherit",
 			});
 
-			child2devDep.on('exit', (code) => {
+			child2devDep.on("exit", (code) => {
 				if (code === 0) {
-					console.log('\nFolder structure created and dependencies installed successfully\n');
+					console.log("\nFolder structure created and dependencies installed successfully\n");
 
 					console.log(`# My App
 
@@ -192,15 +192,15 @@ Then, open [http://localhost:3000] to view it in the browser.
 ## Happy hacking (: \n`);
 
 					exec(
-						packageManager === 'npm'
+						packageManager === "npm"
 							? `cd ${folderName} && npm run lint`
 							: `cd ${folderName} && yarn lint`,
 					);
 
 					// Navega para o diretório folderName
-					const child2 = spawn('cd', [folderName]);
+					const child2 = spawn("cd", [folderName]);
 
-					child2.on('exit', (code) => {
+					child2.on("exit", (code) => {
 						if (code === 0) {
 							console.log(`Run npm start or yarn start - ${folderName} directory`);
 						} else {

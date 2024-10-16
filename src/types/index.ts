@@ -3,7 +3,7 @@ import {
 	firstChoice,
 	packageManager,
 	templateChoices,
-} from '../promptArrays/index';
+} from "../promptArrays/index";
 
 type PackageManager = (typeof packageManager)[number];
 
