@@ -464,7 +464,7 @@ export default GlobalStyleComponent;`;
 		"babel-loader",
 		"copy-webpack-plugin",
 		"css-loader",
-		"eslint",
+		"eslint@^8.57.1",
 		"eslint-config-prettier",
 		"eslint-plugin-prettier",
 		"eslint-plugin-react-hooks",

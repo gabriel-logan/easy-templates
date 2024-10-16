@@ -1,7 +1,7 @@
 {
   "name": "easy-templates",
   "author": "Gabriel Logan",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "easy-templates - A library for creating various templates easily and efficiently using NPX.",
   "bin": "bin/index.js",
   "types": "types",
@@ -11,7 +11,8 @@
     "prepublishminor": "npx tsc && npm version minor && npm publish",
     "prepublishmajor": "npx tsc && npm version major && npm publish",
     "lint": "eslint . --ext .ts",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "build": "tsc"
   },
   "keywords": [
     "templates",
@@ -46,7 +47,7 @@
     "@types/node": "^20.8.7",
     "@typescript-eslint/eslint-plugin": "^6.9.0",
     "@typescript-eslint/parser": "^6.9.0",
-    "eslint": "^8",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.1",
     "prettier": "^3.3.3",
